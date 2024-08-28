@@ -1,10 +1,12 @@
-import nltk 
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lex_rank import LexRankSummarizer
 from summarizer import Summarizer
 from transformers import BartForConditionalGeneration, BartTokenizer, T5ForConditionalGeneration, T5Tokenizer
 
+import nltk
+import os
+nltk.data.path.append(os.path.expanduser('~/.nltk_data'))
 
 # Function to summarize text with Sumy (extractive)
 def summarize_text_sumy(text, sentences_count=8):
