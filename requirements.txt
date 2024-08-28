@@ -6,7 +6,10 @@ nltk
 gensim 
 sumy 
 transformers 
+bert-extractive-summarizer 
 wordcloud 
 matplotlib 
-rouge_score
-
+pillow 
+python-docx 
+rouge_score 
+bert-score 
