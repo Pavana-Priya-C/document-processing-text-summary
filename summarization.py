@@ -6,7 +6,7 @@ from transformers import BartForConditionalGeneration, BartTokenizer, T5ForCondi
 
 import nltk
 import os
-nltk.data.path.append(os.path.expanduser('~/.nltk_data'))
+nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
 # Function to summarize text with Sumy (extractive)
 def summarize_text_sumy(text, sentences_count=8):
