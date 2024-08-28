@@ -1,2 +1,12 @@
 streamlit
 pandas
+streamlit_option_menu
+pdfminer.six 
+nltk 
+gensim 
+sumy 
+transformers 
+wordcloud 
+matplotlib 
+rouge_score
+
