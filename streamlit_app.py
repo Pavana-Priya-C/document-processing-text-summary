@@ -79,7 +79,8 @@ elif option == "Chapter Summary":
 
                 # Separate sections of the text
                 main_content, glossary, think_about_it, talk_about_it, suggested_reading = separate_sections(clean_text)
-            
+
+                st.write('Main Content:\n',main_content)
                 # Summarize the main content using different models
                 summary_sumy = summarize_text_sumy(main_content)
                 summary_bert = summarize_text_bert(main_content)
