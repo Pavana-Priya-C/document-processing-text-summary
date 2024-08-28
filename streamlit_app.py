@@ -3,6 +3,7 @@ from streamlit_option_menu import option_menu
 import os
 from PIL import Image
 import nltk
+from summarizer import Summarizer
 
 from preprocess import extract_text_from_pdf, preprocess_text_chap8, preprocess_text, get_title, remove_subsequent_occurrences, separate_sections
 from summarization import summarize_text_sumy, summarize_text_bert, summarize_text_bart, summarize_text_t5_large, summarize_text_t5_base
@@ -86,7 +87,7 @@ elif option == "Chapter Summary":
                 # st.write('Main Content:\n',main_content)
                 # Summarize the main content using different models
                 summary_sumy = summarize_text_sumy(main_content)
-                summary_bert = summarize_text_bert(main_content)
+                # summary_bert = summarize_text_bert(main_content)
                 summary_bart = summarize_text_bart(main_content)
                 summary_t5_base = summarize_text_t5_base(main_content)
                 summary_t5_large = summarize_text_t5_large(main_content)
@@ -98,7 +99,18 @@ elif option == "Chapter Summary":
                     st.write(summary_sumy)
                 with tab2:
                     st.subheader(f'Summary2 - BERT:')
-                    st.write(summary_bert)  
+                    if not torch.cuda.is_available() and not torch.backends.mps.is_available():
+                        st.error("PyTorch is not available. Ensure you have the torch library installed and your environment supports it.")
+
+                    def summarize_text_bert(text):
+                        try:
+                            model = Summarizer('distilbert-base-uncased', hidden=[-1,-2], hidden_concat=True)
+                            summary = model(main_content, num_sentences=5)
+                            return summary
+                        except ImportError as e:
+                            st.error(f"Error: {str(e)}")
+                            return None 
+                    # st.write(summary_bert)  
                 with tab3:
                     st.subheader(f'Summary1 - BART:')
                     st.write(summary_bart)
