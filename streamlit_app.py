@@ -5,8 +5,8 @@ from PIL import Image
 
 from pdfminer.high_level import extract_text
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('stopwords')
 
 #sumy package for extractive summary
 from sumy.parsers.plaintext import PlaintextParser
