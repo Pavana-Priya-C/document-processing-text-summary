@@ -80,13 +80,13 @@ elif option == "Chapter Summary":
                 # Separate sections of the text
                 main_content, glossary, think_about_it, talk_about_it, suggested_reading = separate_sections(clean_text)
 
-                st.write('Main Content:\n',main_content)
+                # st.write('Main Content:\n',main_content)
                 # Summarize the main content using different models
                 summary_sumy = summarize_text_sumy(main_content)
-                summary_bert = summarize_text_bert(main_content)
-                summary_bart = summarize_text_bart(main_content)
-                summary_t5_large = summarize_text_t5_large(main_content)
-                summary_t5_base = summarize_text_t5_base(main_content)
+                # summary_bert = summarize_text_bert(main_content)
+                # summary_bart = summarize_text_bart(main_content)
+                # summary_t5_large = summarize_text_t5_large(main_content)
+                # summary_t5_base = summarize_text_t5_base(main_content)
 
                 tab1, tab2, tab3, tab4, tab5 = st.tabs(['Summary 1 - Sumy','Summary 2 - BERT', 'Summary 3 - BART', 'Summary 4 - T5-base', 'Summary 5 - T5-large' ])
                 with tab1:

@@ -6,7 +6,7 @@ nltk
 gensim 
 sumy 
 transformers 
-bert-extractive-summarizer 
+bert-extractive-summarizer==0.5.0
 wordcloud 
 matplotlib 
 pillow 
