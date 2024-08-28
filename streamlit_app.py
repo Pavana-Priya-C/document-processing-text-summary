@@ -31,13 +31,8 @@ with st.sidebar:
                         icons=['house-fill','search'])
 
 if option == "About Us":
-    # st.image("D:/MBA/Capstone Project/Capstone Project 2 Text Summarization OCR/code/Future min1.jpg", use_column_width=True)
-    # img = Image.open("D:/MBA/Capstone Project/Capstone Project 2 Text Summarization OCR/code/Future min.jpg")
-    # img = img.resize((600, int(img.height * 600 / img.width)))  # Adjust the width to 600px and maintain aspect ratio
-    # st.image(img, use_column_width=False)
-
     # Load and resize the image
-    img = Image.open("/data/Future min.jpg")
+    img = Image.open("data/Future min.jpg")
     
     # Specify the desired height
     desired_height = 250
@@ -78,7 +73,11 @@ elif option == "Chapter Summary":
     uploaded_file = st.file_uploader("Upload your file :", type=["pdf"])
 
     if uploaded_file is not None:
+        filename = uploaded_file.name
+
         if uploaded_file.type == "application/pdf":
+
+            st.write(f"File Name: {filename}")
             st.success("File uploaded successfully! Please wait for the summary...")
         else:
             st.error("Please upload a valid PDF file.")
