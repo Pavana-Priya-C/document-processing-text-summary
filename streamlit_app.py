@@ -88,9 +88,9 @@ elif option == "Chapter Summary":
                 # Summarize the main content using different models
                 summary_sumy = summarize_text_sumy(main_content)
                 # summary_bert = summarize_text_bert(main_content)
-                summary_bart = summarize_text_bart(main_content)
-                summary_t5_base = summarize_text_t5_base(main_content)
-                summary_t5_large = summarize_text_t5_large(main_content)
+                # summary_bart = summarize_text_bart(main_content)
+                # summary_t5_base = summarize_text_t5_base(main_content)
+                # summary_t5_large = summarize_text_t5_large(main_content)
 
 
                 tab1, tab2, tab3, tab4, tab5 = st.tabs(['Summary 1 - Sumy','Summary 2 - BERT', 'Summary 3 - BART', 'Summary 4 - T5-base', 'Summary 5 - T5-large' ])
@@ -111,15 +111,15 @@ elif option == "Chapter Summary":
                             st.error(f"Error: {str(e)}")
                             return None 
                     # st.write(summary_bert)  
-                with tab3:
-                    st.subheader(f'Summary1 - BART:')
-                    st.write(summary_bart)
-                with tab4:
-                    st.subheader(f'Summary1 - T5-base:')
-                    st.write(summary_t5_base)
-                with tab5:
-                    st.subheader(f'Summary1 - T5-large:')
-                    st.write(summary_t5_large)             
+                # with tab3:
+                #     st.subheader(f'Summary1 - BART:')
+                #     st.write(summary_bart)
+                # with tab4:
+                #     st.subheader(f'Summary1 - T5-base:')
+                #     st.write(summary_t5_base)
+                # with tab5:
+                #     st.subheader(f'Summary1 - T5-large:')
+                #     st.write(summary_t5_large)             
             else:
                 st.write("Please upload other file....")        
 
