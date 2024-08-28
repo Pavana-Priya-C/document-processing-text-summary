@@ -6,6 +6,7 @@ from PIL import Image
 from pdfminer.high_level import extract_text
 import nltk
 nltk.download('punkt')
+nltk.download('stopwords')
 
 #sumy package for extractive summary
 from sumy.parsers.plaintext import PlaintextParser
@@ -16,6 +17,7 @@ from transformers import pipeline
 from concurrent.futures import ThreadPoolExecutor
 
 import re
+
 
 # Set the title of the web app
 st.title("Welcome to Future Minds Tutoring")
