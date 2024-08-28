@@ -37,7 +37,7 @@ if option == "About Us":
     # st.image(img, use_column_width=False)
 
     # Load and resize the image
-    img = Image.open("D:\MBA\Capstone Project\Capstone Project 2 Text Summarization OCR\streamlit_code\logo\Future min.jpg")
+    img = Image.open("/data/Future min.jpg")
     
     # Specify the desired height
     desired_height = 250
