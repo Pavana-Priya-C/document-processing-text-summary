@@ -4,10 +4,10 @@ streamlit_option_menu
 pdfminer.six 
 nltk 
 gensim 
-sumy 
 transformers 
 bert-extractive-summarizer==0.5.0
 wordcloud 
+sumy 
 matplotlib 
 pillow 
 python-docx 
