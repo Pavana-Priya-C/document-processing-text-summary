@@ -6,13 +6,9 @@ from PIL import Image
 from pdfminer.high_level import extract_text
 import nltk
 import nltk
-nltk.download('stopwords', download_dir='./nltk_data/')
-nltk.download('punkt', download_dir='./nltk_data/')
+nltk.download('stopwords')
+nltk.download('punkt')
 
-nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
-
-# Now, NLTK will use the local data
-from nltk.corpus import stopwords
 
 #sumy package for extractive summary
 from sumy.parsers.plaintext import PlaintextParser
@@ -28,69 +24,69 @@ import re
 # Set the title of the web app
 st.title("Welcome to Future Minds Tutoring")
 
-# # Sidebar with navigation options
-# with st.sidebar:
-#     option = option_menu("Menu",
-#                         options=["About Us","Chapter Summary"],
-#                         icons=['house-fill','search'])
+# Sidebar with navigation options
+with st.sidebar:
+    option = option_menu("Menu",
+                        options=["About Us","Chapter Summary"],
+                        icons=['house-fill','search'])
 
-# if option == "About Us":
-#     # st.image("D:/MBA/Capstone Project/Capstone Project 2 Text Summarization OCR/code/Future min1.jpg", use_column_width=True)
-#     # img = Image.open("D:/MBA/Capstone Project/Capstone Project 2 Text Summarization OCR/code/Future min.jpg")
-#     # img = img.resize((600, int(img.height * 600 / img.width)))  # Adjust the width to 600px and maintain aspect ratio
-#     # st.image(img, use_column_width=False)
+if option == "About Us":
+    # st.image("D:/MBA/Capstone Project/Capstone Project 2 Text Summarization OCR/code/Future min1.jpg", use_column_width=True)
+    # img = Image.open("D:/MBA/Capstone Project/Capstone Project 2 Text Summarization OCR/code/Future min.jpg")
+    # img = img.resize((600, int(img.height * 600 / img.width)))  # Adjust the width to 600px and maintain aspect ratio
+    # st.image(img, use_column_width=False)
 
-#     # Load and resize the image
-#     img = Image.open("D:\MBA\Capstone Project\Capstone Project 2 Text Summarization OCR\streamlit_code\logo\Future min.jpg")
+    # Load and resize the image
+    img = Image.open("D:\MBA\Capstone Project\Capstone Project 2 Text Summarization OCR\streamlit_code\logo\Future min.jpg")
     
-#     # Specify the desired height
-#     desired_height = 250
-#     # Calculate the width to maintain the aspect ratio
-#     width, height = img.size
-#     aspect_ratio = width / height
-#     new_width = int(desired_height * aspect_ratio)
+    # Specify the desired height
+    desired_height = 250
+    # Calculate the width to maintain the aspect ratio
+    width, height = img.size
+    aspect_ratio = width / height
+    new_width = int(desired_height * aspect_ratio)
     
-#     # Resize the image
-#     img = img.resize((new_width, desired_height))
+    # Resize the image
+    img = img.resize((new_width, desired_height))
     
-#     # Display the resized image
-#     st.image(img, use_column_width=True)
+    # Display the resized image
+    st.image(img, use_column_width=True)
 
-#     st.header("About Us")
-#     st.write("""
-#     At Future Minds Tutoring, we deliver outstanding educational support to students in grades 10, 11, and 12. Our innovative methodology blends conventional pedagogy with state-of-the-art artificial intelligence technologies to provide all-encompassing and customized learning experiences.
+    st.header("About Us")
+    st.write("""
+    At Future Minds Tutoring, we deliver outstanding educational support to students in grades 10, 11, and 12. Our innovative methodology blends conventional pedagogy with state-of-the-art artificial intelligence technologies to provide all-encompassing and customized learning experiences.
 
-#     Our professional educators and AI specialists collaborate to generate chapter-specific content that is simplified and easy to understand, allowing students to grasp and retain information more quickly. Our dedication lies in providing specialized resources and support to kids with exceptional needs, enabling them to overcome obstacles and excel academically.
-#     """)
+    Our professional educators and AI specialists collaborate to generate chapter-specific content that is simplified and easy to understand, allowing students to grasp and retain information more quickly. Our dedication lies in providing specialized resources and support to kids with exceptional needs, enabling them to overcome obstacles and excel academically.
+    """)
 
-#     st.header("Mission")
-#     st.write("""
-#     Our mission is to provide high-quality, inclusive education to students of classes 10, 11, and 12, fostering an environment where every student, including those with special needs, can excel. We leverage advanced AI technology to deliver personalized and effective learning experiences that help students understand and retain complex concepts.
-#     """)
+    st.header("Mission")
+    st.write("""
+    Our mission is to provide high-quality, inclusive education to students of classes 10, 11, and 12, fostering an environment where every student, including those with special needs, can excel. We leverage advanced AI technology to deliver personalized and effective learning experiences that help students understand and retain complex concepts.
+    """)
     
-#     st.header("Vision")
-#     st.write("""
-#     Our vision is to be a leading educational institution recognized for our commitment to academic excellence and inclusivity. We aim to transform traditional learning by integrating innovative AI solutions, ensuring that every student, regardless of their challenges, has the opportunity to succeed and achieve their full potential.
-#     """)
+    st.header("Vision")
+    st.write("""
+    Our vision is to be a leading educational institution recognized for our commitment to academic excellence and inclusivity. We aim to transform traditional learning by integrating innovative AI solutions, ensuring that every student, regardless of their challenges, has the opportunity to succeed and achieve their full potential.
+    """)
     
     
 
-# elif option == "Chapter Summary":
-#     st.subheader("Chapter Summary")
-#     # File upload section
+elif option == "Chapter Summary":
+    st.subheader("Chapter Summary")
+    # File upload section
         
-#     uploaded_file = st.file_uploader("Upload your file :", type=["pdf"])
+    uploaded_file = st.file_uploader("Upload your file :", type=["pdf"])
 
-#     if uploaded_file is not None:
-#         if uploaded_file.type == "application/pdf":
-#             st.success("File uploaded successfully! Please wait for the summary...")
-#         else:
-#             st.error("Please upload a valid PDF file.")
-#     else:
-#         st.warning("Please upload a file.")
+    if uploaded_file is not None:
+        if uploaded_file.type == "application/pdf":
+            st.success("File uploaded successfully! Please wait for the summary...")
+        else:
+            st.error("Please upload a valid PDF file.")
+    else:
+        st.warning("Please upload a file.")
 
 
-# ##
+##
 # raw_text =''
 # cleaned_text=''
 # title=''
