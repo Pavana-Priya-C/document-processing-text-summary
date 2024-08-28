@@ -15,7 +15,7 @@ def get_title(text):
         return None
 
 #The below function is used only for Chapter 8
-def preprocess_chap8(raw_text):
+def preprocess_text_chap8(raw_text):
   pattern = r'^.*?(\d+).*?READ AND FIND OUT'
 
   # Search for the pattern and get the match

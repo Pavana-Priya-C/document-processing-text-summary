@@ -7,7 +7,7 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 
-from preprocess import extract_text_from_pdf, preprocess_text, get_title, remove_subsequent_occurrences, separate_sections
+from preprocess import extract_text_from_pdf, preprocess_text_chap8, preprocess_text, get_title, remove_subsequent_occurrences, separate_sections
 from summarization import summarize_text_sumy, summarize_text_bert, summarize_text_bart, summarize_text_t5_large, summarize_text_t5_base
 
 
@@ -67,10 +67,39 @@ elif option == "Chapter Summary":
 
         if uploaded_file.type == "application/pdf":
 
-            st.write(f"File Name: {filename}")
+            # st.write(f"File Name: {filename}")
             st.success("File uploaded successfully! Please wait for the summary...")
+            if filename == 'jefp108.pdf':
+                # Extract text from the uploaded PDF file
+                raw_text = extract_text_from_pdf(uploaded_file)
+
+                preprocessed_text = preprocess_text_chap8(raw_text)
+                title='Bholi'
+                
+                 # Remove subsequent occurrences of the title
+                clean_text = remove_subsequent_occurrences(preprocessed_text, title)
+
+                # Separate sections of the text
+                main_content, glossary, think_about_it, talk_about_it, suggested_reading = separate_sections(clean_text)
+            
+                # Summarize the main content using different models
+                summary_sumy = summarize_text_sumy(main_content)
+                summary_bert = summarize_text_bert(main_content)
+                summary_bart = summarize_text_bart(main_content)
+                summary_t5_large = summarize_text_t5_large(main_content)
+                summary_t5_base = summarize_text_t5_base(main_content)
+
+                tab1, tab2, tab3, tab4, tab5 = st.tabs(['Summary 1 - Sumy','Summary 2 - BERT', 'Summary 3 - BART', 'Summary 4 - T5-base', 'Summary 5 - T5-large' ])
+                with tab1:
+                    st.subheader(f'Summary1 of {title}:')
+                    st.write(summary_sumy)
+            else:
+                st.write("Please upload other file....")        
+
         else:
             st.error("Please upload a valid PDF file.")
+            
+
     else:
         st.warning("Please upload a file.")
 
