@@ -5,8 +5,14 @@ from PIL import Image
 
 from pdfminer.high_level import extract_text
 import nltk
-# nltk.download('punkt')
-# nltk.download('stopwords')
+import nltk
+nltk.download('stopwords', download_dir='./nltk_data/')
+nltk.download('punkt', download_dir='./nltk_data/')
+
+nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
+
+# Now, NLTK will use the local data
+from nltk.corpus import stopwords
 
 #sumy package for extractive summary
 from sumy.parsers.plaintext import PlaintextParser
