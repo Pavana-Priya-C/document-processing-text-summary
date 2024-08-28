@@ -6,8 +6,8 @@ from PIL import Image
 from preprocess import extract_text_from_pdf, preprocess_text_chap8, preprocess_text, get_title, remove_subsequent_occurrences, separate_sections
 from summarization import summarize_text_sumy, summarize_text_bert, summarize_text_bart, summarize_text_t5_large, summarize_text_t5_base
 
-nltk.download('punkt')
-nltk.download('stopwords')
+# nltk.download('punkt')
+# nltk.download('stopwords')
 
 # Set the title of the web app
 st.title("Welcome to Future Minds Tutoring")
