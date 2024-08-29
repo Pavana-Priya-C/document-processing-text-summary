@@ -7,6 +7,7 @@ from transformers import BartForConditionalGeneration, BartTokenizer, T5ForCondi
 
 import nltk
 import os
+import re
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
 # Function to summarize text with Sumy (extractive)
@@ -22,7 +23,7 @@ def summarize_text_sumy(text, sentences_count=8):
     summarizer = LexRankSummarizer()
     summary = summarizer(sentences, sentences_count)
     return " ".join([str(sentence) for sentence in summary])
-    
+
 # Function to summarize text using BERT Transformer
 def summarize_text_bert(main_content):
     try:
