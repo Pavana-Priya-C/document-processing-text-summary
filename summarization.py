@@ -10,6 +10,7 @@ import os
 import re
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
+
 # Function to summarize text with Sumy (extractive)
 def simple_sentence_tokenizer(text):
     # This pattern matches sentences by looking for sentence-ending punctuation followed by a space and a capital letter.

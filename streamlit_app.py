@@ -9,6 +9,14 @@ from summarization import summarize_text_sumy, summarize_text_bert, summarize_te
 
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
+import sumy
+
+from sumy.parsers.plaintext import PlaintextParser
+from sumy.nlp.tokenizers import Tokenizer
+from sumy.summarizers.lsa import LsaSummarizer as Summarizer
+from sumy.nlp.stemmers import Stemmer
+from sumy.utils import get_stop_words
+
 # nltk.download('punkt')
 # nltk.download('stopwords')
 
@@ -85,29 +93,40 @@ elif option == "Chapter Summary":
 
                 # st.write('Main Content:\n',main_content)
                 # Summarize the main content using different models
-                summary_sumy = summarize_text_sumy(main_content)
-                summary_bert = summarize_text_bert(main_content)
-                summary_bart = summarize_text_bart(main_content)
-                summary_t5_base = summarize_text_t5_base(main_content)
-                summary_t5_large = summarize_text_t5_large(main_content)
+                # summary_sumy = summarize_text_sumy(main_content)
+                # summary_bert = summarize_text_bert(main_content)
+                # summary_bart = summarize_text_bart(main_content)
+                # summary_t5_base = summarize_text_t5_base(main_content)
+                # summary_t5_large = summarize_text_t5_large(main_content)
 
 
                 tab1, tab2, tab3, tab4, tab5 = st.tabs(['Summary 1 - Sumy','Summary 2 - BERT', 'Summary 3 - BART', 'Summary 4 - T5-base', 'Summary 5 - T5-large' ])
                 with tab1:
                     st.subheader(f'Summary1 - Sumy:')
-                    st.write(summary_sumy)
+                    # st.write(summary_sumy)
+                    LANGUAGE = "english"
+                    SENTENCES_COUNT = 10
+                    parser = PlaintextParser.from_string(main_content, Tokenizer(LANGUAGE))
+                    stemmer = Stemmer(LANGUAGE)
+
+                    summarizer = Summarizer(stemmer)
+                    summarizer.stop_words = get_stop_words(LANGUAGE)
+
+                    for sentence in summarizer(parser.document, SENTENCES_COUNT):
+                        st.write(sentence)
+
                 with tab2:
                     st.subheader(f'Summary2 - BERT:')
-                    st.write(summary_bert)  
+                    # st.write(summary_bert)  
                 with tab3:
                     st.subheader(f'Summary1 - BART:')
-                    st.write(summary_bart)
+                    # st.write(summary_bart)
                 with tab4:
                     st.subheader(f'Summary1 - T5-base:')
-                    st.write(summary_t5_base)
+                    # st.write(summary_t5_base)
                 with tab5:
                     st.subheader(f'Summary1 - T5-large:')
-                    st.write(summary_t5_large)             
+                    # st.write(summary_t5_large)             
             else:
                 st.write("Please upload other file....")        
 

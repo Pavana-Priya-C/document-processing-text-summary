@@ -2,7 +2,7 @@ streamlit
 pandas
 streamlit_option_menu
 pdfminer.six 
-nltk 
+nltk>=3.0.2
 gensim 
 torch
 transformers 
