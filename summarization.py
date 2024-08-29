@@ -10,11 +10,19 @@ import os
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
 # Function to summarize text with Sumy (extractive)
+def simple_sentence_tokenizer(text):
+    # This pattern matches sentences by looking for sentence-ending punctuation followed by a space and a capital letter.
+    sentence_endings = re.compile(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s')
+    sentences = sentence_endings.split(text)
+    return [sentence.strip() for sentence in sentences if sentence]
+
 def summarize_text_sumy(text, sentences_count=8):
-    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    # parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    sentences = simple_sentence_tokenizer(text)
     summarizer = LexRankSummarizer()
-    summary = summarizer(parser.document, sentences_count)
+    summary = summarizer(sentences, sentences_count)
     return " ".join([str(sentence) for sentence in summary])
+    
 # Function to summarize text using BERT Transformer
 def summarize_text_bert(main_content):
     try:
