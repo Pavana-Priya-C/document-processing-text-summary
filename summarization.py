@@ -11,13 +11,10 @@ nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 
 # Function to summarize text with Sumy (extractive)
 def summarize_text_sumy(text, sentences_count=8):
-    try:
-        parser = PlaintextParser.from_string(text, Tokenizer("english"))
-        summarizer = LexRankSummarizer()
-        summary = summarizer(parser.document, sentences_count)
-        return " ".join([str(sentence) for sentence in summary])
-    except LookupError:
-        return None
+    parser = PlaintextParser.from_string(text, Tokenizer("english"))
+    summarizer = LexRankSummarizer()
+    summary = summarizer(parser.document, sentences_count)
+    return " ".join([str(sentence) for sentence in summary])
 # Function to summarize text using BERT Transformer
 def summarize_text_bert(main_content):
     try:
